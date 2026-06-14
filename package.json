@@ -1,0 +1,41 @@
+{
+  "name": "kwin-floating-window-helper",
+  "version": "0.0.1",
+  "main": "src/main.ts",
+  "description": "Tiling using floating windows like older GNOME 2 style",
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/pyamsoft/kwin-floating-window-helper",
+  "author": {
+    "email": "developer.pyamsoft+kde@gmail.com",
+    "name": "pyamsoft"
+  },
+  "type": "module",
+  "scripts": {
+    "build": "node --experimental-strip-types bin/build.ts",
+    "clean": "rm -rf dist",
+    "lint:eslint": "eslint --report-unused-disable-directives --max-warnings 0 --cache --cache-strategy content .",
+    "lint:oxlint": "oxlint --deny-warnings .",
+    "lint:tsc": "tsc --strict --noEmit",
+    "lint": "$npm_execpath run lint:oxlint && $npm_execpath run lint:tsc && $npm_execpath run lint:eslint",
+    "format": "prettier --write ."
+  },
+  "engines": {
+    "node": ">=24.x"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "3.3.5",
+    "@eslint/js": "10.0.1",
+    "@types/node": "25.9.3",
+    "@typescript-eslint/eslint-plugin": "8.61.0",
+    "@typescript-eslint/parser": "8.61.0",
+    "esbuild": "0.28.1",
+    "eslint": "10.5.0",
+    "globals": "17.6.0",
+    "npm-check-updates": "22.2.3",
+    "oxlint": "1.69.0",
+    "prettier": "3.8.4",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.61.0"
+  },
+  "packageManager": "pnpm@11.6.0"
+}

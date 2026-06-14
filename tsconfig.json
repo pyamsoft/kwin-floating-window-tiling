@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "target": "ES2016",
+    "lib": ["ESNext"],
+    "module": "esnext",
+    "skipLibCheck": true,
+
+    /* Building */
+    "incremental": true,
+    "erasableSyntaxOnly": false,
+    "tsBuildInfoFile": ".tsbuildinfo",
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitOverride": true,
+    "noImplicitThis": true,
+
+    "types": ["node"]
+  },
+  "include": ["src"]
+}

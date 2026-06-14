@@ -1,0 +1,20 @@
+#!/bin/sh
+
+BIN_DIR="$(dirname "$(realpath "$0")")"
+ROOT_DIR="$(realpath "${BIN_DIR}/..")"
+readonly BIN_DIR
+readonly ROOT_DIR
+
+main() {
+  # Make install directory
+  _install_root="${HOME}/.local/share/kwin/scripts"
+  mkdir -p "${_install_root}" || return 1
+
+  # Move built files over
+  cp -r "${ROOT_DIR}/dist/"* "${_install_root}" || return 1
+
+  return 0
+}
+
+main "$@" || exit 1
+exit 0

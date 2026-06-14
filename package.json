@@ -1,17 +1,17 @@
 {
-  "name": "kwin-floating-window-helper",
-  "version": "0.0.1",
+  "name": "kwin-floating-window-tiling",
+  "version": "0.0.2",
   "main": "src/main.ts",
   "description": "Tiling using floating windows like older GNOME 2 style",
   "license": "Apache-2.0",
-  "homepage": "https://github.com/pyamsoft/kwin-floating-window-helper",
+  "homepage": "https://github.com/pyamsoft/kwin-floating-window-tiling",
   "author": {
     "email": "developer.pyamsoft+kde@gmail.com",
     "name": "pyamsoft"
   },
   "type": "module",
   "scripts": {
-    "build": "node --experimental-strip-types bin/build.ts",
+    "build": "node --experimental-strip-types scripts/build.ts",
     "clean": "rm -rf dist",
     "lint:eslint": "eslint --report-unused-disable-directives --max-warnings 0 --cache --cache-strategy content .",
     "lint:oxlint": "oxlint --deny-warnings .",

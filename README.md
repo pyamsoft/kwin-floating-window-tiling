@@ -1,4 +1,4 @@
-# KWin Floating Window Tiler
+# KWin Floating Window Tiling
 
 ## What
 

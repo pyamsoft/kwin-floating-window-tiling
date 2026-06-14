@@ -7,11 +7,16 @@ readonly ROOT_DIR
 
 main() {
   # Make install directory
-  _install_root="${HOME}/.local/share/kwin/scripts"
+  _data_dir="${XDG_DATA_DIR:-"${HOME}/.local/share"}"
+  _install_root="${_data_dir}/kwin/scripts"
+  unset _data_dir
+
   mkdir -p "${_install_root}" || return 1
 
   # Move built files over
   cp -r "${ROOT_DIR}/dist/"* "${_install_root}" || return 1
+
+  unset _install_root
 
   return 0
 }

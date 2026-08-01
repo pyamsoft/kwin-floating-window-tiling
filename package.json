@@ -1,6 +1,6 @@
 {
   "name": "kwin-floating-window-tiling",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "src/main.ts",
   "description": "Tiling using floating windows like older GNOME 2 style",
   "license": "Apache-2.0",
@@ -37,5 +37,5 @@
     "typescript": "6.0.3",
     "typescript-eslint": "8.65.0"
   },
-  "packageManager": "pnpm@11.17.0"
+  "packageManager": "pnpm@11.18.0"
 }

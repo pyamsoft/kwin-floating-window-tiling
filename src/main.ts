@@ -59,6 +59,21 @@ const makeShortcutId = function (id: string): string {
   return `pyamsoft-${packageName}-${id}`;
 };
 
+const registerShorcutsFullScreen = function () {
+  registerShortcut(
+    makeShortcutId("maximize"),
+    "Quick Tile Maximize Floating Window",
+    "Meta+=",
+    () =>
+      forcePlaceWindow({
+        xScale: 0,
+        yScale: 0,
+        widthScale: 1,
+        heightScale: 1,
+      }),
+  );
+}
+
 const registerShorcutsScreenHalves = function () {
   registerShortcut(
     makeShortcutId("left-half"),
@@ -168,6 +183,7 @@ const registerShorcutsScreenQuadrants = function () {
 };
 
 (() => {
+  registerShorcutsFullScreen();
   registerShorcutsScreenHalves();
   registerShorcutsScreenQuadrants();
 })();

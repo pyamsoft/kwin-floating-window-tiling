@@ -72,7 +72,7 @@ const registerShorcutsFullScreen = function () {
         heightScale: 1,
       }),
   );
-}
+};
 
 const registerShorcutsScreenHalves = function () {
   registerShortcut(

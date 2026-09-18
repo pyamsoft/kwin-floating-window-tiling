@@ -18,6 +18,12 @@ main() {
 
   unset _install_root
 
+  printf -- 'Reload KWin settings...\n'
+  qdbus6 org.kde.KWin /KWin reconfigure || {
+    printf -- 'Failed to reload KWin settings over qbus\n'
+  }
+  printf -- 'KWin reloaded!\n'
+
   return 0
 }
 

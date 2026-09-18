@@ -14,14 +14,19 @@
  * limitations under the License.
  */
 
-import { name as packageName } from "../package.json";
+import packageJson from "../package.json" with { type: "json" };
+import { type KWinWorkspace } from "./kwin";
+
+const packageName = packageJson.name;
 
 const forcePlaceWindow = function (props: {
+  workspace: KWinWorkspace;
   xScale: number;
   yScale: number;
   widthScale: number;
   heightScale: number;
 }) {
+  const { workspace } = props;
   const win = workspace.activeWindow;
 
   // No window, bail
@@ -59,13 +64,14 @@ const makeShortcutId = function (id: string): string {
   return `pyamsoft-${packageName}-${id}`;
 };
 
-const registerShorcutsFullScreen = function () {
+const registerShorcutsFullScreen = function (workspace: KWinWorkspace) {
   registerShortcut(
     makeShortcutId("maximize"),
     "Quick Tile Maximize Floating Window",
     "Meta+=",
     () =>
       forcePlaceWindow({
+        workspace,
         xScale: 0,
         yScale: 0,
         widthScale: 1,
@@ -74,13 +80,14 @@ const registerShorcutsFullScreen = function () {
   );
 };
 
-const registerShorcutsScreenHalves = function () {
+const registerShorcutsScreenHalves = function (workspace: KWinWorkspace) {
   registerShortcut(
     makeShortcutId("left-half"),
     "Quick Tile Floating Window to the Left",
     "Meta+Left",
     () =>
       forcePlaceWindow({
+        workspace,
         xScale: 0,
         yScale: 0,
         widthScale: 0.5,
@@ -94,6 +101,7 @@ const registerShorcutsScreenHalves = function () {
     "Meta+Right",
     () =>
       forcePlaceWindow({
+        workspace,
         xScale: 0.5,
         yScale: 0,
         widthScale: 0.5,
@@ -107,6 +115,7 @@ const registerShorcutsScreenHalves = function () {
     "Meta+Up",
     () =>
       forcePlaceWindow({
+        workspace,
         xScale: 0,
         yScale: 0,
         widthScale: 1,
@@ -120,6 +129,7 @@ const registerShorcutsScreenHalves = function () {
     "Meta+Down",
     () =>
       forcePlaceWindow({
+        workspace,
         xScale: 0,
         yScale: 0.5,
         widthScale: 1,
@@ -128,13 +138,14 @@ const registerShorcutsScreenHalves = function () {
   );
 };
 
-const registerShorcutsScreenQuadrants = function () {
+const registerShorcutsScreenQuadrants = function (workspace: KWinWorkspace) {
   registerShortcut(
     makeShortcutId("bottom-left-quadrant"),
     "Quick Tile Floating Window to the Bottom Left",
     "Meta+;",
     () =>
       forcePlaceWindow({
+        workspace,
         xScale: 0,
         yScale: 0.5,
         widthScale: 0.5,
@@ -148,6 +159,7 @@ const registerShorcutsScreenQuadrants = function () {
     "Meta+'",
     () =>
       forcePlaceWindow({
+        workspace,
         xScale: 0.5,
         yScale: 0.5,
         widthScale: 0.5,
@@ -161,6 +173,7 @@ const registerShorcutsScreenQuadrants = function () {
     "Meta+[",
     () =>
       forcePlaceWindow({
+        workspace,
         xScale: 0,
         yScale: 0,
         widthScale: 0.5,
@@ -174,6 +187,7 @@ const registerShorcutsScreenQuadrants = function () {
     "Meta+]",
     () =>
       forcePlaceWindow({
+        workspace,
         xScale: 0.5,
         yScale: 0,
         widthScale: 0.5,
@@ -183,7 +197,8 @@ const registerShorcutsScreenQuadrants = function () {
 };
 
 (() => {
-  registerShorcutsFullScreen();
-  registerShorcutsScreenHalves();
-  registerShorcutsScreenQuadrants();
+  const w = workspace;
+  registerShorcutsFullScreen(w);
+  registerShorcutsScreenHalves(w);
+  registerShorcutsScreenQuadrants(w);
 })();

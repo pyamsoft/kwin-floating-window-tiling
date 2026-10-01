@@ -42,8 +42,8 @@ const esbuild = async function (srcDir: string, outDir: string) {
     format: "esm",
     platform: "neutral",
     define: {
-      __PACKAGE_NAME__: JSON.stringify(packageJson.name)
-    }
+      __PACKAGE_NAME__: JSON.stringify(packageJson.name),
+    },
   });
 };
 

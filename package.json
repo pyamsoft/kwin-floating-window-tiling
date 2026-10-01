@@ -11,7 +11,7 @@
   },
   "type": "module",
   "scripts": {
-    "build": "node --experimental-strip-types scripts/build.ts",
+    "build": "node --experimental-strip-types buildsystem/build.ts",
     "clean": "rm -rf dist",
     "lint:eslint": "eslint --report-unused-disable-directives --max-warnings 0 --cache --cache-strategy content .",
     "lint:oxlint": "oxlint --deny-warnings .",

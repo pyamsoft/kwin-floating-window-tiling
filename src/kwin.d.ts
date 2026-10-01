@@ -24,16 +24,6 @@ export interface KWinFrameGeometry {
   height: number;
 }
 
-/**
- * Screen representation
- */
-export interface KWinWorkspaceWindowOutput {
-  /**
-   * Geometry
-   */
-  geometry: KWinFrameGeometry;
-}
-
 export interface KWinWorkspaceWindow {
   /**
    * Frame geometry

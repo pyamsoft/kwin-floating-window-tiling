@@ -1,6 +1,6 @@
 {
   "name": "kwin-floating-window-tiling",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "main": "src/main.ts",
   "description": "Tiling using floating windows like older GNOME 2 style",
   "license": "Apache-2.0",

@@ -16,33 +16,14 @@
  * limitations under the License.
  */
 
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { build } from "esbuild";
+import packageJson from "../package.json" with { type: "json" };
 
 const scriptDir = dirname(new URL(import.meta.url).pathname);
 const projectRootDir = dirname(scriptDir);
 const srcDir = resolve(projectRootDir, "src");
-
-interface PackageJson {
-  name: string;
-  version: string;
-  description: string;
-  author: {
-    email: string;
-    name: string;
-  };
-  license: string;
-  homepage: string;
-}
-
-const readPackageJson = async function (): Promise<PackageJson> {
-  const packageJsonFile = await readFile(
-    resolve(projectRootDir, "package.json"),
-    "utf-8",
-  );
-  return JSON.parse(packageJsonFile);
-};
 
 const nodeNameToReadableName = function (s: string): string {
   return s
@@ -60,24 +41,27 @@ const esbuild = async function (srcDir: string, outDir: string) {
     minify: true,
     format: "esm",
     platform: "neutral",
+    define: {
+      __PACKAGE_NAME__: JSON.stringify(packageJson.name)
+    }
   });
 };
 
-const generateMetadata = async function (pkg: PackageJson, outDir: string) {
+const generateMetadata = async function (outDir: string) {
   const metadata = {
     KPlugin: {
-      Name: nodeNameToReadableName(pkg.name),
+      Name: nodeNameToReadableName(packageJson.name),
       Icon: "preferences-system-windows",
-      Id: pkg.name,
-      Version: pkg.version,
-      License: pkg.license,
-      Description: pkg.description,
-      Website: pkg.homepage,
+      Id: packageJson.name,
+      Version: packageJson.version,
+      License: packageJson.license,
+      Description: packageJson.description,
+      Website: packageJson.homepage,
     },
     Authors: [
       {
-        Email: pkg.author.email,
-        Name: pkg.author.name,
+        Email: packageJson.author.email,
+        Name: packageJson.author.name,
       },
     ],
     "X-Plasma-API": "javascript",
@@ -91,14 +75,12 @@ const generateMetadata = async function (pkg: PackageJson, outDir: string) {
 };
 
 const main = async function () {
-  const pkg = await readPackageJson();
-
-  const distDir = resolve(projectRootDir, "dist", pkg.name);
+  const distDir = resolve(projectRootDir, "dist", packageJson.name);
   const codeDir = resolve(distDir, "contents", "code");
 
   await mkdir(codeDir, { recursive: true });
   await esbuild(srcDir, codeDir);
-  await generateMetadata(pkg, distDir);
+  await generateMetadata(distDir);
 };
 
 main().catch((err) => {

@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-import packageJson from "../package.json" with { type: "json" };
 import { type KWinWorkspace } from "./kwin";
 
-const packageName = packageJson.name;
+// Our package name without the full package.json import
+const packageName = __PACKAGE_NAME__;
 
 const forcePlaceWindow = function (props: {
   workspace: KWinWorkspace;

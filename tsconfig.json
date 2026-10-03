@@ -3,7 +3,6 @@
     "target": "ES2016",
     "lib": ["ESNext"],
     "module": "esnext",
-    "skipLibCheck": true,
 
     /* Building */
     "incremental": true,

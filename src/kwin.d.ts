@@ -42,32 +42,40 @@ export interface KWinWorkspaceWindow {
 }
 
 /**
+ * Client area option, e.g. KWin.WorkArea
+ */
+export type KWinClientAreaOption = number;
+
+/**
  * KWin Workspace
  */
 export interface KWinWorkspace {
   /**
    * Get active window
    */
-  activeWindow: KWinWorkspaceWindow | undefined;
+  activeWindow: KWinWorkspaceWindow | null;
 
   /**
    * Resolve client area
    */
   clientArea: (
-    area: keyof KWin,
+    area: KWinClientAreaOption,
     window: KWinWorkspaceWindow,
   ) => KWinFrameGeometry;
 }
 
-declare namespace KWin {
-  const WorkArea: unknown;
+/**
+ * KWin enums
+ */
+export interface KWin {
+  WorkArea: KWinClientAreaOption;
 }
 
 declare global {
   /**
    * Global KDE Workspace
    */
-  export const workspace: KwinWorkspace;
+  export const workspace: KWinWorkspace;
 
   /**
    * Register global keyboard shortcut
